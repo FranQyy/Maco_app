@@ -12,7 +12,6 @@ class UnitList extends React.Component {
       this.setState({
         units: res.data
       });
-      console.log(res.data);
     });
   }
 

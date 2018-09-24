@@ -6,8 +6,8 @@ import UnitDetail from "./containers/UnitDetailView";
 
 const BaseRouter = () => (
   <div>
-    <Route exact path="/" component={UnitList} />
-    <Route exact path="/:unitID" component={UnitDetail} />
+    <Route exact path="/units" component={UnitList} />
+    <Route exact path="/units/:unitID" component={UnitDetail} />
   </div>
 );
 
