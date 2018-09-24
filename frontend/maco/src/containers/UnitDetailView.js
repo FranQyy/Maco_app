@@ -10,11 +10,8 @@ class UnitDetail extends React.Component {
   };
 
   componentDidMount() {
-    // const unitID = this.props.match.params.unitID;
-    const {
-      match: { params }
-    } = this.props;
-    axios.get("http://127.0.0.1:8002/${params.unitID}").then(res => {
+    const unitID = this.props.match.params.unitID;
+    axios.get(`http://localhost:8002/api/${unitID}`).then(res => {
       this.setState({
         unit: res.data
       });
