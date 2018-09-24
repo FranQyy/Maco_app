@@ -3,6 +3,7 @@ import Units from "../components/Unit";
 import axios from "axios";
 
 import { Card } from "antd";
+import CustomForm from "../components/Form";
 
 class UnitDetail extends React.Component {
   state = {
@@ -21,9 +22,16 @@ class UnitDetail extends React.Component {
 
   render() {
     return (
-      <Card title={this.state.unit.title}>
-        <p>{this.state.unit.description}</p>
-      </Card>
+      <div>
+        <Card title={this.state.unit.title}>
+          <p>{this.state.unit.description}</p>
+        </Card>
+        <CustomForm
+          requestType="put"
+          unitID={this.props.match.params.unitID}
+          btnText="Update"
+        />
+      </div>
     );
   }
 }

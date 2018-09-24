@@ -2,6 +2,8 @@ import React from "react";
 import Units from "../components/Unit";
 import axios from "axios";
 
+import CustomForm from "../components/Form";
+
 class UnitList extends React.Component {
   state = {
     units: []
@@ -16,7 +18,13 @@ class UnitList extends React.Component {
   }
 
   render() {
-    return <Units data={this.state.units} />;
+    return (
+      <div>
+        <Units data={this.state.units} />
+        <h2>Create a new item</h2>
+        <CustomForm requestType="post" unitID={null} btnText="Create" />
+      </div>
+    );
   }
 }
 
