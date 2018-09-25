@@ -7,6 +7,7 @@ import BaseRouter from "./routes";
 import { BrowserRouter as Router } from "react-router-dom";
 import UnitList from "./containers/UnitListView";
 
+import Sider from "./components/Menu.js";
 class App extends Component {
   render() {
     return (
