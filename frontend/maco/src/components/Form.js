@@ -19,15 +19,15 @@ class CustomForm extends React.Component {
             description: description
           })
           .then(res => console.log(res))
-          .catch(error => console.err(error));
+          .catch(error => console.error(error));
       case "put":
         return axios
-          .put(`http://localhost:8002/api/${unitID}`, {
+          .put(`http://localhost:8002/api/${unitID}/`, {
             title: title,
             description: description
           })
           .then(res => console.log(res))
-          .catch(error => console.err(error));
+          .catch(error => console.error(error));
     }
   };
 
