@@ -1,5 +1,7 @@
 import React from "react";
 import { List, Avatar, Icon } from "antd";
+import axios from "axios";
+import Like from "../components/Like";
 
 const IconText = ({ type, text }) => (
   <span>
@@ -29,7 +31,7 @@ const Units = props => {
         <List.Item
           key={item.title}
           actions={[
-            <IconText type="star-o" text="156" />,
+            <IconText type="star-o" text={<Like filmID={item.id} />} />,
             <IconText type="like-o" text="156" />,
             <IconText type="message" text="2" />
           ]}
@@ -45,6 +47,7 @@ const Units = props => {
             avatar={<Avatar src={item.avatar} />}
             title={<a href={`/units/${item.id}`}>{item.title}</a>}
             description={item.description}
+            likes={item.likes}
           />
           {item.content}
         </List.Item>

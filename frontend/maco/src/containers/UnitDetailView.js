@@ -1,8 +1,7 @@
 import React from "react";
-import Units from "../components/Unit";
 import axios from "axios";
 
-import { Card } from "antd";
+import { Card, Button } from "antd";
 import CustomForm from "../components/Form";
 
 class UnitDetail extends React.Component {
@@ -12,12 +11,19 @@ class UnitDetail extends React.Component {
 
   componentDidMount() {
     const unitID = this.props.match.params.unitID;
-    axios.get(`http://localhost:8002/api/${unitID}/`).then(res => {
+    axios.get(`http://localhost:8002/api/units/${unitID}/`).then(res => {
       this.setState({
         unit: res.data
       });
     });
   }
+
+  handleDelete = event => {
+    const unitID = this.props.match.params.unitID;
+    axios.delete(`http://localhost:8002/api/units/${unitID}/`);
+    this.props.history.push("/units/");
+    this.forceUpdate();
+  };
 
   render() {
     return (
@@ -30,6 +36,11 @@ class UnitDetail extends React.Component {
           unitID={this.props.match.params.unitID}
           btnText="Update"
         />
+        <form onSubmit={this.handleDelete}>
+          <Button type="danger" htmlType="submit">
+            Delete
+          </Button>
+        </form>
       </div>
     );
   }
