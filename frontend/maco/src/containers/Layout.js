@@ -15,11 +15,15 @@ const CustomLayout = props => {
           defaultSelectedKeys={["2"]}
           style={{ lineHeight: "64px" }}
         >
+          {props.isAuthenticated ? (
+            <Menu.item key="2">Logout</Menu.item>
+          ) : (
+            <Menu.item key="2">
+              <Link to="/login">Login</Link>
+            </Menu.item>
+          )}
           <Menu.Item key="1">
             <Link to="/units">Movies</Link>
-          </Menu.Item>
-          <Menu.Item key="2">
-            <Link to="/login">Login</Link>
           </Menu.Item>
         </Menu>
       </Header>
