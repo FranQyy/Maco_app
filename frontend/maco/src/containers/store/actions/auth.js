@@ -1,5 +1,5 @@
-import * as actionTypes from "./actionTypes";
 import axios from "axios";
+import * as actionTypes from "./actionTypes";
 
 export const authStart = () => {
   return {
@@ -22,7 +22,7 @@ export const authFail = error => {
 };
 
 export const logout = () => {
-  localStorage.removeItem("username");
+  localStorage.removeItem("token");
   localStorage.removeItem("expirationDate");
   return {
     type: actionTypes.AUTH_LOGOUT
@@ -41,7 +41,7 @@ export const authLogin = (username, password) => {
   return dispatch => {
     dispatch(authStart());
     axios
-      .post("http://127.0.0.1/8002/rest-auth/login/", {
+      .post("http://127.0.0.1:8000/rest-auth/login/", {
         username: username,
         password: password
       })
@@ -53,8 +53,8 @@ export const authLogin = (username, password) => {
         dispatch(authSuccess(token));
         dispatch(checkAuthTimeout(3600));
       })
-      .catch(error => {
-        dispatch(authFail(error));
+      .catch(err => {
+        dispatch(authFail(err));
       });
   };
 };
@@ -63,7 +63,7 @@ export const authSignup = (username, email, password1, password2) => {
   return dispatch => {
     dispatch(authStart());
     axios
-      .post("http://127.0.0.1/8002/rest-auth/registeration/", {
+      .post("http://127.0.0.1:8000/rest-auth/registration/", {
         username: username,
         email: email,
         password1: password1,
@@ -77,8 +77,8 @@ export const authSignup = (username, email, password1, password2) => {
         dispatch(authSuccess(token));
         dispatch(checkAuthTimeout(3600));
       })
-      .catch(error => {
-        dispatch(authFail(error));
+      .catch(err => {
+        dispatch(authFail(err));
       });
   };
 };
@@ -86,7 +86,7 @@ export const authSignup = (username, email, password1, password2) => {
 export const authCheckState = () => {
   return dispatch => {
     const token = localStorage.getItem("token");
-    if (token == undefined) {
+    if (token === undefined) {
       dispatch(logout());
     } else {
       const expirationDate = new Date(localStorage.getItem("expirationDate"));
@@ -95,8 +95,9 @@ export const authCheckState = () => {
       } else {
         dispatch(authSuccess(token));
         dispatch(
-          checkAuthTimeout(expirationDate.getTime() - new Date().getTime()) /
-            1000
+          checkAuthTimeout(
+            (expirationDate.getTime() - new Date().getTime()) / 1000
+          )
         );
       }
     }

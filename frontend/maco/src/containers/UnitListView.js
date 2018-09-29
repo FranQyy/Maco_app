@@ -11,12 +11,12 @@ class UnitList extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("http://127.0.0.1:8002/api/units/").then(res => {
+    axios.get("http://127.0.0.1:8000/api/units/").then(res => {
       this.setState({
         units: res.data
       });
     });
-    axios.get(`http://127.0.0.1:8002/api/likes/`).then(res => {
+    axios.get(`http://127.0.0.1:8000/api/likes/`).then(res => {
       this.setState({
         likes: res.data
       });

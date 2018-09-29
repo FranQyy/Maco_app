@@ -11,7 +11,7 @@ class UnitDetail extends React.Component {
 
   componentDidMount() {
     const unitID = this.props.match.params.unitID;
-    axios.get(`http://localhost:8002/api/units/${unitID}/`).then(res => {
+    axios.get(`http://localhost:8000/api/units/${unitID}/`).then(res => {
       this.setState({
         unit: res.data
       });
@@ -20,7 +20,7 @@ class UnitDetail extends React.Component {
 
   handleDelete = event => {
     const unitID = this.props.match.params.unitID;
-    axios.delete(`http://localhost:8002/api/units/${unitID}/`);
+    axios.delete(`http://localhost:8000/api/units/${unitID}/`);
     this.props.history.push("/units/");
     this.forceUpdate();
   };

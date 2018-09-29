@@ -70,8 +70,6 @@ class LikeListView(APIView):
         an_apiview = []
         while i <= number_of_units:
             likes = Like.objects.filter(unit_movie=i).count()
-            print(likes)
             an_apiview.append(likes)
-            print(an_apiview)
             i = i + 1
         return Response({'message': 'Hello2!', 'an_apiview': an_apiview})
