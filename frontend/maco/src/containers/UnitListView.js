@@ -11,7 +11,6 @@ class UnitList extends React.Component {
   };
 
   componentDidMount() {
-    const filmID = this.props.match.params.filmID;
     axios.get("http://127.0.0.1:8002/api/units/").then(res => {
       this.setState({
         units: res.data

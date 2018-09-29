@@ -1,6 +1,5 @@
 import React from "react";
 import { List, Avatar, Icon } from "antd";
-import axios from "axios";
 import Like from "../components/Like";
 
 const IconText = ({ type, text }) => (
