@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Assets/css/default.min.css";
 import "antd/dist/antd.css";
 
 import CustomLayout from "./containers/Layout";
@@ -9,7 +10,7 @@ import { connect } from "react-redux";
 
 import * as actions from "./containers/store/actions/auth";
 
-import "./Assets/css/default.min.css";
+import Header from "./components/headerComponent/Header";
 
 class App extends Component {
   componentDidMount() {
@@ -18,6 +19,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Header />
         <Router>
           <CustomLayout {...this.props}>
             <BaseRouter />

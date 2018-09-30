@@ -10,7 +10,7 @@ class CustomLayout extends React.Component {
   render() {
     return (
       <Layout className="layout">
-        <Header>
+        {/* <Header>
           <div className="logo" />
           <Menu
             theme="dark"
@@ -31,7 +31,8 @@ class CustomLayout extends React.Component {
               <Link to="/units">Movies</Link>
             </Menu.Item>
           </Menu>
-        </Header>
+        </Header> */}
+
         <Content style={{ padding: "0 50px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item>
