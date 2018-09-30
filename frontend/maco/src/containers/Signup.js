@@ -1,16 +1,14 @@
 import React from "react";
-
 import { Form, Input, Icon, Button } from "antd";
-import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 import * as actions from "./store/actions/auth";
 
 const FormItem = Form.Item;
 
 class RegistrationForm extends React.Component {
   state = {
-    confirmDirty: false,
-    autoCompleteResult: []
+    confirmDirty: false
   };
 
   handleSubmit = e => {
@@ -23,8 +21,8 @@ class RegistrationForm extends React.Component {
           values.password,
           values.confirm
         );
+        this.props.history.push("/");
       }
-      this.props.history.push("/");
     });
   };
 
@@ -65,6 +63,7 @@ class RegistrationForm extends React.Component {
             />
           )}
         </FormItem>
+
         <FormItem>
           {getFieldDecorator("email", {
             rules: [
@@ -84,6 +83,7 @@ class RegistrationForm extends React.Component {
             />
           )}
         </FormItem>
+
         <FormItem>
           {getFieldDecorator("password", {
             rules: [
@@ -97,12 +97,13 @@ class RegistrationForm extends React.Component {
             ]
           })(
             <Input
-              type="password"
               prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+              type="password"
               placeholder="Password"
             />
           )}
         </FormItem>
+
         <FormItem>
           {getFieldDecorator("confirm", {
             rules: [
@@ -117,25 +118,25 @@ class RegistrationForm extends React.Component {
           })(
             <Input
               prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+              type="password"
               placeholder="Password"
               onBlur={this.handleConfirmBlur}
             />
           )}
         </FormItem>
+
         <FormItem>
           <Button
             type="primary"
             htmlType="submit"
             style={{ marginRight: "10px" }}
           >
-            Sign up
+            Signup
           </Button>
           Or
-          <NavLink
-            style={{ marginRight: "10px", marginLeft: "10px" }}
-            to="/login/"
-          >
-            Sign Up
+          <NavLink style={{ marginRight: "10px" }} to="/login/">
+            {" "}
+            login
           </NavLink>
         </FormItem>
       </Form>
@@ -155,7 +156,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onAuth: (username, email, password1, password2) =>
-      dispatch(actions.authLogin(username, email, password1, password2))
+      dispatch(actions.authSignup(username, email, password1, password2))
   };
 };
 
