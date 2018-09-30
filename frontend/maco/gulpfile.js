@@ -1,35 +1,25 @@
 var gulp = require("gulp");
-var pug = require("gulp-pug");
-var less = require("gulp-less");
-var minifyCSS = require("gulp-csso");
-var concat = require("gulp-concat");
-var sourcemaps = require("gulp-sourcemaps");
+var sass = require("gulp-sass");
+var minifyCSS = require("gulp-clean-css");
+var uglify = require("gulp-uglify");
+var rename = require("gulp-rename");
+var changed = require("gulp-changed");
 
 var SCSS_SRC = "./src/Assets/scss/**/*.scss";
 var SCSS_DEST = "./src/Assets/css";
 
-gulp.task("html", function() {
-  return gulp
+gulp.task("compile_css", function() {
+  gulp
     .src(SCSS_SRC)
-    .pipe(pug())
-    .pipe(gulp.dest(SCSS_DEST));
-});
-
-gulp.task("css", function() {
-  return gulp
-    .src(SCSS_SRC)
-    .pipe(less())
+    .pipe(sass().on("error", sass.logError))
     .pipe(minifyCSS())
+    .pipe(rename({ suffix: ".min" }))
+    .pipe(changed(SCSS_DEST))
     .pipe(gulp.dest(SCSS_DEST));
 });
 
-gulp.task("js", function() {
-  return gulp
-    .src(SCSS_SRC)
-    .pipe(sourcemaps.init())
-    .pipe(concat("app.min.js"))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(SCSS_DEST));
+gulp.task("watch_scss", function() {
+  gulp.watch(SCSS_SRC, ["compile_scss"]);
 });
 
-gulp.task("default", ["html", "css", "js"]);
+gulp.task("default", ["watch_scss"]);
