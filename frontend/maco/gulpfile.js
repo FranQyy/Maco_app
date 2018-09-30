@@ -5,28 +5,31 @@ var minifyCSS = require("gulp-csso");
 var concat = require("gulp-concat");
 var sourcemaps = require("gulp-sourcemaps");
 
+var SCSS_SRC = "./src/Assets/scss/**/*.scss";
+var SCSS_DEST = "./src/Assets/css";
+
 gulp.task("html", function() {
   return gulp
-    .src("client/templates/*.pug")
+    .src(SCSS_SRC)
     .pipe(pug())
-    .pipe(gulp.dest("build/html"));
+    .pipe(gulp.dest(SCSS_DEST));
 });
 
 gulp.task("css", function() {
   return gulp
-    .src("client/templates/*.less")
+    .src(SCSS_SRC)
     .pipe(less())
     .pipe(minifyCSS())
-    .pipe(gulp.dest("build/css"));
+    .pipe(gulp.dest(SCSS_DEST));
 });
 
 gulp.task("js", function() {
   return gulp
-    .src("client/javascript/*.js")
+    .src(SCSS_SRC)
     .pipe(sourcemaps.init())
     .pipe(concat("app.min.js"))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest("build/js"));
+    .pipe(gulp.dest(SCSS_DEST));
 });
 
 gulp.task("default", ["html", "css", "js"]);
