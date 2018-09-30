@@ -8,7 +8,7 @@ var changed = require("gulp-changed");
 var SCSS_SRC = "./src/Assets/scss/**/*.scss";
 var SCSS_DEST = "./src/Assets/css";
 
-gulp.task("compile_css", function() {
+gulp.task("compile_scss", function() {
   gulp
     .src(SCSS_SRC)
     .pipe(sass().on("error", sass.logError))

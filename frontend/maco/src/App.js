@@ -9,6 +9,8 @@ import { connect } from "react-redux";
 
 import * as actions from "./containers/store/actions/auth";
 
+import "./Assets/css/default.min.css";
+
 class App extends Component {
   componentDidMount() {
     this.props.onTryAutoSignUp();
