@@ -1,21 +1,22 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   render() {
     return (
       <header>
-        <div className="logo">MACO APP</div>
+        <div className="logo">MACOAPP LOGO</div>
 
         <nav>
           <ul>
             <li>
-              <a href="/">HomePage</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="/units">Movies</a>
+              <Link to="/units">Movies</Link>
             </li>
             <li className="last">
-              <a href="#">Contact</a>
+              <Link to="#">Contact</Link>
             </li>
           </ul>
         </nav>

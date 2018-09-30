@@ -18,14 +18,14 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        <Header />
-        <Router>
+      <Router>
+        <div>
+          <Header />
           <CustomLayout {...this.props}>
             <BaseRouter />
           </CustomLayout>
-        </Router>
-      </div>
+        </div>
+      </Router>
     );
     // return React.createElement(
     //   "div",
